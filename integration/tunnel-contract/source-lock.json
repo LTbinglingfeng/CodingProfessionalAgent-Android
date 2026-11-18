@@ -1,0 +1,25 @@
+{
+  "gatewayRevision": "deacbf2199b11f89d7609148af71e4cfac1adac8",
+  "gateway": {
+    "go.mod": "fb4989c07e8b51b09ba20285c3296ebc49e4a5ce078b0e159e471ab5642f505c",
+    "go.sum": "29ea6891a2b33185e06c2f0ea4edf2946de738a35edace24f16808ab7616a59f",
+    "internal/wstunnel/frame_inspector.go": "255f14ec0b5f60e8cab6f458b956b1651f7d8c77be06b597b2ca2ecf583476d9",
+    "internal/wstunnel/handler.go": "4ec3d93c3ef536687b14355ec2b26bf6610bcc85436ba05bd61ba0f4e0b9a3db",
+    "internal/wstunnel/hub.go": "7fc3232001ecba2c8765a901e31c26e6a0edb23ffd583066de97a4b52f7d767a",
+    "internal/wstunnel/peer.go": "cf08d043f8549ed7f11b6bae357d40414bd6130ff0adc7acbf848b2cdb4658d8",
+    "internal/wstunnel/protocol.go": "78469b2e3b510978c72ad5d805552e08b3991d8a41d20089bcd7ff23424404e2",
+    "internal/wstunnel/transport.go": "73f754e1182a5b6e7c34f78429f72a7cba15dd1d00da6b69acd3b142dee0f024"
+  },
+  "desktopRevision": "6673a2550cc0a03d9b3ac2ac67b3739844c47004",
+  "desktop": {
+    "webServerService.ts": "f9f469be567a4ad1495c4a874f859837b6af0d1d1b6de0b0f4b92cddbb3e1e3c",
+    "webServerAuthService.ts": "1db9b471fce494705371e52f191dfacf6b9d96b0a8daee2b60ba6029d55815c4",
+    "profilingAnalyzer.ts": "69efdc08c35c0bf5ef02696c81d52454d779760c937b103f97203c00503cfd4e",
+    "profilingService.ts": "2a2b3d27fc013522a2ee3f3b1ceaad1d12754b6cb706f775ce9e6e988fe2e61f",
+    "web/routeRegistry.ts": "ad877997f6b5ba53ce511979bc2618bff75172b3deb712b7db75632b3ae3354d",
+    "web/rpcTransport.ts": "1bde32a09a40c61200192797faf5ab520c42a33e868949fc098438199fb9e505",
+    "web/identityAdapter.ts": "74c567c85c1d558eba2d654632a5591bd8bd9d68b354abd34c4282319cb18659",
+    "cliProxyTunnelService.ts": "c21c488894decfe25dccb911843b42a67200a4983c1b572d74065cc6183cee2a",
+    "tunnel/tunnelProtocol.ts": "8543050ca9f1f7822d6dae04795ade2db72da425581bf08ff78cd56f9ec43b5a"
+  }
+}

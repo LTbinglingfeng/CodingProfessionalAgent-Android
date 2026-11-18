@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+export GRADLE_USER_HOME="$ROOT/.local/gradle-user-home"
+export ANDROID_HOME="$ROOT/.local/android-sdk"
+export ANDROID_USER_HOME="$ROOT/.local/android-user"
+cd "$ROOT"
+exec ./gradlew "$@"

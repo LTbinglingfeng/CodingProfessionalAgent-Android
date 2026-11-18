@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Cpa" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:colorAccent">#9D432E</item>
+        <item name="android:windowBackground">#F8F6F2</item>
+    </style>
+</resources>
