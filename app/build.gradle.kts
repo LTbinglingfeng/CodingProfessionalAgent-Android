@@ -13,9 +13,17 @@ android {
         applicationId = "dev.cpa.android"
         minSdk = 33
         targetSdk = 37
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = providers.gradleProperty("cpaVersionCode").orNull?.toInt() ?: 1
+        versionName = providers.gradleProperty("cpaVersionName").orNull ?: "0.1.0"
         testInstrumentationRunner = "dev.cpa.android.LocalizedTestRunner"
+    }
+    if (providers.gradleProperty("cpaSplitArmApks").orNull == "true") {
+        splits.abi {
+            isEnable = true
+            reset()
+            include("armeabi-v7a", "arm64-v8a")
+            isUniversalApk = false
+        }
     }
     buildFeatures { compose = true }
     compileOptions {

@@ -1,0 +1,90 @@
+name: Android CI
+
+on:
+  push:
+    branches: [dev, main]
+    tags: ['v*']
+  pull_request:
+    branches: [dev, main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Android checks
+    if: ${{ !github.event.deleted }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: ${{ github.ref_type == 'tag' && '0' || '1' }}
+          persist-credentials: false
+      - name: Validate release tag and main ancestry
+        if: github.ref_type == 'tag'
+        run: |
+          [[ "$GITHUB_REF_NAME" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]] || { echo 'Expected vMAJOR.MINOR.PATCH'; exit 1; }
+          git merge-base --is-ancestor HEAD refs/remotes/origin/main || { echo 'Tag commit is not on main'; exit 1; }
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager 'platforms;android-37.1' 'build-tools;36.0.0'
+      - run: ./scripts/check-repository.sh && ./scripts/verify.sh
+      - name: Build versioned release APK
+        if: github.ref_type == 'tag'
+        run: ./gradlew :app:assembleRelease -PcpaSplitArmApks=true -PcpaVersionName="${GITHUB_REF_NAME#v}" -PcpaVersionCode="$((GITHUB_RUN_NUMBER + 1))"
+      - uses: actions/upload-artifact@v4
+        if: github.ref_type == 'tag'
+        with:
+          name: unsigned-apk
+          path: |
+            app/build/outputs/apk/release/app-armeabi-v7a-release-unsigned.apk
+            app/build/outputs/apk/release/app-arm64-v8a-release-unsigned.apk
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    needs: verify
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: unsigned-apk
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager 'build-tools;36.0.0'
+      - name: Sign and verify APK
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -eu
+          : "${KEYSTORE_BASE64:?missing keystore}" "${STORE_PASSWORD:?missing store password}" "${KEY_ALIAS:?missing alias}" "${KEY_PASSWORD:?missing key password}"
+          umask 077
+          key=$(mktemp "$RUNNER_TEMP/keystore.XXXXXX")
+          trap 'rm -f "$key"' EXIT
+          printf %s "$KEYSTORE_BASE64" | base64 --decode > "$key"
+          signer="$ANDROID_HOME/build-tools/36.0.0/apksigner"
+          mkdir dist
+          for abi in armeabi-v7a arm64-v8a; do
+            apk="dist/CPA-Android-$GITHUB_REF_NAME-$abi.apk"
+            "$signer" sign --ks "$key" --ks-key-alias "$KEY_ALIAS" --ks-pass env:STORE_PASSWORD --key-pass env:KEY_PASSWORD --out "$apk" "app-$abi-release-unsigned.apk"
+            "$signer" verify --verbose "$apk"
+            [[ $(unzip -Z1 "$apk" | awk -F/ '$1 == "lib" && /\.so$/ {print $2}' | sort -u) == "$abi" ]]
+          done
+      - name: Hash signed release files
+        working-directory: dist
+        run: |
+          sha256sum *.apk > SHA256SUMS.txt
+          sha256sum -c SHA256SUMS.txt
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.apk dist/SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --verify-tag --generate-notes --title "$GITHUB_REF_NAME"
