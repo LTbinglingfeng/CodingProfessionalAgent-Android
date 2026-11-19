@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android-only copy for the iOS-style UI (security confirmations, recovery states). -->
+<resources>
+    <string name="ui_x_allow_http">"Allow unencrypted HTTP"</string>
+    <string name="ui_x_password_keep">"Leave blank to keep"</string>
+    <string name="ui_x_api_key_keep">"Leave blank to keep"</string>
+    <string name="ui_x_clear_password">"Clear saved password"</string>
+    <string name="ui_x_delete_connection_named">"Delete “%s”?"</string>
+    <string name="ui_x_language_english">"English"</string>
+    <string name="ui_x_language_chinese">"简体中文"</string>
+    <string name="ui_x_send_unknown">"The send result is unknown. Reload and confirm before sending again."</string>
+    <string name="ui_x_verify">"Confirm"</string>
+    <string name="ui_x_reload">"Reload"</string>
+    <string name="ui_x_request_pending">"Waiting for the desktop…"</string>
+    <string name="ui_x_subagents">"Subagents"</string>
+    <string name="ui_x_fork_failed">"Failed to fork session"</string>
+    <string name="ui_x_creating">"Creating chat…"</string>
+    <string name="ui_x_recovery_title">"Chat creation not confirmed"</string>
+    <string name="ui_x_open_created">"Open Chat"</string>
+    <string name="ui_x_inspect">"Check Desktop"</string>
+    <string name="ui_x_discard_attempt">"Discard Attempt"</string>
+    <string name="ui_x_restore_edit">"Restore Edit"</string>
+    <string name="ui_x_drag_reorder">"Reorder"</string>
+    <string name="ui_x_delete">"Delete"</string>
+    <string name="ui_x_more">"More"</string>
+    <string name="ui_x_back">"Back"</string>
+    <string name="ui_x_new_chat">"New Chat"</string>
+    <string name="ui_x_edit_waiting">"Waiting for the edited message to start…"</string>
+    <string name="ui_x_edit_unknown">"The edit result is unknown. Check the desktop before editing again."</string>
+    <string name="ui_x_check">"Check"</string>
+    <string name="ui_x_acknowledge">"I Checked"</string>
+    <string name="ui_x_truncated">"Preview truncated"</string>
+    <string name="ui_x_no_models">"No models available. Configure models on the desktop."</string>
+    <string name="ui_turn_system_prompt_build_status">"Building enhanced system prompt"</string>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android-only copy for the iOS-style UI (security confirmations, recovery states). -->
+<resources>
+    <string name="ui_x_allow_http">"允许不加密的 HTTP 连接"</string>
+    <string name="ui_x_password_keep">"留空则保留原密码"</string>
+    <string name="ui_x_api_key_keep">"留空则保留原 API Key"</string>
+    <string name="ui_x_clear_password">"清除已保存的密码"</string>
+    <string name="ui_x_delete_connection_named">"删除“%s”？"</string>
+    <string name="ui_x_language_english">"English"</string>
+    <string name="ui_x_language_chinese">"简体中文"</string>
+    <string name="ui_x_send_unknown">"发送结果未知。请重新加载并确认后再发送。"</string>
+    <string name="ui_x_verify">"确认"</string>
+    <string name="ui_x_reload">"重新加载"</string>
+    <string name="ui_x_request_pending">"正在等待桌面端…"</string>
+    <string name="ui_x_subagents">"子智能体"</string>
+    <string name="ui_x_fork_failed">"分叉会话失败"</string>
+    <string name="ui_x_creating">"正在创建对话…"</string>
+    <string name="ui_x_recovery_title">"对话创建结果未确认"</string>
+    <string name="ui_x_open_created">"打开对话"</string>
+    <string name="ui_x_inspect">"检查桌面端"</string>
+    <string name="ui_x_discard_attempt">"放弃本次创建"</string>
+    <string name="ui_x_restore_edit">"恢复编辑"</string>
+    <string name="ui_x_drag_reorder">"调整顺序"</string>
+    <string name="ui_x_delete">"删除"</string>
+    <string name="ui_x_more">"更多"</string>
+    <string name="ui_x_back">"返回"</string>
+    <string name="ui_x_new_chat">"新建对话"</string>
+    <string name="ui_x_edit_waiting">"正在等待编辑后的消息开始运行…"</string>
+    <string name="ui_x_edit_unknown">"编辑结果未知，请检查桌面端后再继续编辑。"</string>
+    <string name="ui_x_check">"检查"</string>
+    <string name="ui_x_acknowledge">"已核对"</string>
+    <string name="ui_x_truncated">"预览已截断"</string>
+    <string name="ui_x_no_models">"暂无可用模型，请在桌面端配置模型。"</string>
+    <string name="ui_turn_system_prompt_build_status">"正在构建增强性系统提示词"</string>
+</resources>

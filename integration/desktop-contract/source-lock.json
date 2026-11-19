@@ -1,0 +1,12 @@
+{
+  "revision": "6673a2550cc0a03d9b3ac2ac67b3739844c47004",
+  "sha256": {
+    "webServerService.ts": "f9f469be567a4ad1495c4a874f859837b6af0d1d1b6de0b0f4b92cddbb3e1e3c",
+    "webServerAuthService.ts": "1db9b471fce494705371e52f191dfacf6b9d96b0a8daee2b60ba6029d55815c4",
+    "profilingAnalyzer.ts": "69efdc08c35c0bf5ef02696c81d52454d779760c937b103f97203c00503cfd4e",
+    "profilingService.ts": "2a2b3d27fc013522a2ee3f3b1ceaad1d12754b6cb706f775ce9e6e988fe2e61f",
+    "web/routeRegistry.ts": "ad877997f6b5ba53ce511979bc2618bff75172b3deb712b7db75632b3ae3354d",
+    "web/rpcTransport.ts": "1bde32a09a40c61200192797faf5ab520c42a33e868949fc098438199fb9e505",
+    "web/identityAdapter.ts": "74c567c85c1d558eba2d654632a5591bd8bd9d68b354abd34c4282319cb18659"
+  }
+}
