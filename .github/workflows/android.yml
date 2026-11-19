@@ -30,6 +30,8 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
       - run: sdkmanager 'platforms;android-37.1' 'build-tools;36.0.0'
       - run: ./scripts/check-repository.sh && ./scripts/verify.sh
       - name: Build versioned release APK
@@ -57,6 +59,8 @@ jobs:
         with:
           name: unsigned-apk
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
       - run: sdkmanager 'build-tools;36.0.0'
       - name: Sign and verify APK
         env:
